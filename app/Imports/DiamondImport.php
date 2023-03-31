@@ -5,8 +5,9 @@ namespace App\Imports;
 use App\Models\Diamond;
 use App\Utils\Constants;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithStartRow;
 
-class DiamondImport implements ToModel
+class DiamondImport implements ToModel, WithStartRow
 {
     /**
      * @param array $row
@@ -44,5 +45,10 @@ class DiamondImport implements ToModel
             Constants::FANCY_COLOR_INTENSITY => $row[24],
             Constants::TOTAL_SALES => $row[25]
         ]);
+    }
+
+    public function startRow(): int
+    {
+        return 2; // start to read data from the column number stated. This case is 2 so as to avoid headers being included in the query
     }
 }
