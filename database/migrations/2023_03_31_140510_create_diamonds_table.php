@@ -13,7 +13,7 @@ return new class extends Migration {
     {
         Schema::create('diamonds', function (Blueprint $table) {
             $table->id()->autoIncrement();
-            $table->string(Constants::IDENTIFIER)->unique();
+            $table->string(Constants::IDENTIFIER)->unique()->nullable();
             $table->string(Constants::CUT)->nullable();
             $table->string(Constants::COLOR)->nullable();
             $table->text(Constants::CLARITY)->nullable();
