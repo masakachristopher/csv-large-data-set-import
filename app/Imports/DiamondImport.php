@@ -49,6 +49,6 @@ class DiamondImport implements ToModel, WithStartRow
 
     public function startRow(): int
     {
-        return 2; // start to read data from the column number stated. This case is 2 so as to avoid headers being included in the query
+        return 2; // start to read data from the row number stated. This case is 2 so as to avoid headers being included in the query
     }
 }
