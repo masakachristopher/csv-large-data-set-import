@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FileImportAndExportController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,7 +13,16 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+// Default page route
+Route::get('/', [FileImportAndExportController::class, 'index']);
 
-Route::get('/', function () {
-    return view('index');
-});
+// 2. Imported Data Visulation route,
+Route::get('/diamonds', [FileImportAndExportController::class, 'show']);
+
+// 3. Import and Export handler routes
+// handles file import
+Route::post('import', [FileImportAndExportController::class, 'importFile']);
+// handles file export
+Route::get('export/{slug}', [FileImportAndExportController::class, 'exportFile']);
+// End of import and Export handler routes
+
