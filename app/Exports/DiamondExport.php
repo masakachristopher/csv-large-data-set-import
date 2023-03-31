@@ -20,7 +20,7 @@ class DiamondExport implements FromCollection, WithHeadings
         // map function iterates the database fields and returns selected fields data only
         return Diamond::all()->map(function ($diamond) {
             return [
-                Constants::INDEX => $diamond->id,
+                Constants::IDENTIFIER => $diamond->identifier,
                 Constants::CUT => $diamond->cut,
                 Constants::COLOR => $diamond->color,
                 Constants::CLARITY => $diamond->clarity,
@@ -57,7 +57,7 @@ class DiamondExport implements FromCollection, WithHeadings
     public function headings(): array // overrides  headings() method from WithHeadings
     {
         return [
-            "indentifier",
+            ".",
             Constants::CUT,
             Constants::COLOR,
             Constants::CLARITY,
