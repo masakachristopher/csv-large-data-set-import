@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [FileImportAndExportController::class, 'index']);
 
 // 2. Imported Data Visulation route,
-Route::get('/diamonds', [FileImportAndExportController::class, 'show']);
+Route::get('/diamonds', [FileImportAndExportController::class, 'visualizeImportedData']);
 
 // 3. Import and Export handler routes
 // handles file import
