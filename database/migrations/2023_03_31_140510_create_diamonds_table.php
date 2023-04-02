@@ -13,11 +13,12 @@ return new class extends Migration {
     {
         Schema::create('diamonds', function (Blueprint $table) {
             $table->id()->autoIncrement();
-            $table->string(Constants::IDENTIFIER)->unique()->nullable();
+            $table->unsignedInteger(Constants::IDENTIFIER)->unique();
             $table->string(Constants::CUT)->nullable();
             $table->string(Constants::COLOR)->nullable();
             $table->text(Constants::CLARITY)->nullable();
-            $table->string(Constants::CARAT_WEIGHT)->default(0);
+            $table->float(Constants::CARAT_WEIGHT, 8, 2)->default(0);
+            // $table->string(Constants::CUT_QUALITY, 255)->nullable();
             $table->string(Constants::CUT_QUALITY, 255)->nullable();
             $table->string(Constants::LAB)->nullable();
             $table->string(Constants::SYMMETRY, 255);
@@ -26,10 +27,10 @@ return new class extends Migration {
             $table->string(Constants::CULET_SIZE, 255)->nullable();
             $table->string(Constants::CULET_CONDITION)->nullable();
             $table->string(Constants::DEPTH_PERCENT)->default(0);
-            $table->string(Constants::TABLE_PERCENT)->default(0);
-            $table->string(Constants::MEAS_LENGTH)->default(0);
-            $table->string(Constants::MEAS_WIDTH)->default(0);
-            $table->string(Constants::MEAS_DEPTH)->default(0);
+            $table->float(Constants::TABLE_PERCENT, 8, 2)->default(0);
+            $table->float(Constants::MEAS_LENGTH, 8, 2)->default(0);
+            $table->float(Constants::MEAS_WIDTH, 8, 2)->default(0);
+            $table->float(Constants::MEAS_DEPTH, 8, 2)->default(0);
             $table->string(Constants::GIRDLE_MIN)->nullable();
             $table->string(Constants::GIRDLE_MAX)->nullable();
             $table->string(Constants::FLOUR_COLOR)->nullable();
@@ -38,7 +39,7 @@ return new class extends Migration {
             $table->string(Constants::FANCY_COLOR_SECONDARY_COLOR)->nullable();
             $table->string(Constants::FANCY_COLOR_OVERTONE)->nullable();
             $table->string(Constants::FANCY_COLOR_INTENSITY)->nullable();
-            $table->string(Constants::TOTAL_SALES)->default(0);
+            $table->bigInteger(Constants::TOTAL_SALES)->default(0);
             $table->timestamp('updated_at')->nullable();
             $table->timestamp('created_at')->nullable();
         });

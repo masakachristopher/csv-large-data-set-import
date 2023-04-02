@@ -4,8 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Exports\DiamondExport;
 use App\Imports\DiamondImport;
+use App\Jobs\ProcessCsvImport;
+use App\Jobs\ProcessExcelExport;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use Storage;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class FileImportAndExportController extends Controller
 {
@@ -17,7 +22,7 @@ class FileImportAndExportController extends Controller
 
     public function visualizeImportedData()
     {
-        return view('diamonds'); // view not yet created
+        return view('diamonds'); // diamonds list view
     }
 
     public function importFile(Request $request)
@@ -35,11 +40,13 @@ class FileImportAndExportController extends Controller
         // Store the file in the temporary directory. We will retrieve the file when reading and saving data to the database with a background process
         $path = $file->storeAs('temp', $fileName);
 
-        $temporaryfilePath = 'temp/' . $fileName;
+        $temporaryFile = storage_path('app\temp\ ' . "{$fileName}");
+        $modifiedtempFile = str_replace(' ', '', $temporaryFile);
 
         try {
-            Excel::import(new DiamondImport, $temporaryfilePath);
-            return redirect('')->with('status', 'The file has been excel/csv imported to database.');
+
+            $response = ProcessCsvImport::dispatchSync($modifiedtempFile); // Made it asynchronous because takes less time to execute
+            return redirect('')->with('status', "Csv file imported successfully");
         } catch (\Throwable $th) {
             //throw $th;
             return redirect('')->with('error', 'Something went wrong. Please try again.');
@@ -48,8 +55,23 @@ class FileImportAndExportController extends Controller
 
     }
     //
-    public function exportFile($extension) // The method argument `$extension` is the file extension name
+    public function exportFile() // The method argument `$extension` is the file extension name
     {
-        return Excel::download(new DiamondExport, 'diamonds.' . $extension);
+        $fileName = 'diamonds.xlsx';
+        $filePath = 'app/diamonds.xlsx'; // This path due to Export process stores the file in application storage directory
+
+        $fileCheck = file_exists(storage_path($filePath)); // check if file exists in the storage
+        if(!$fileCheck){
+             dispatch(new ProcessExcelExport($fileName));
+             return redirect('')->with('status', 'Excel export process added to database queue.');
+        }
+
+        // Returns the file and automatically downloads it
+        return new BinaryFileResponse(storage_path($filePath), 200, [
+            'Content-Type' => 'application/octet-stream',
+            'Content-Disposition' => 'attachment; filename=diamonds.xlsx'
+        ]);
+
     }
+
 }

@@ -32,7 +32,7 @@
 
             <div class="font-weight-bold">
                 <h6 class="float-right">
-                    <a href="{{ url('export/xlsx') }}" class="mr-4"><span> <i>Excel export</i></span></a>
+                    <a href="{{ url('export') }}" class="mr-4"><span> <i>Excel export</i></span></a>
                     <a href="{{ url('diamonds') }}" class="mr-1"><span> <i>Show diamonds data</i></span></a>
                 </h6>
             </div>

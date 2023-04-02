@@ -6,17 +6,26 @@ use App\Models\Diamond;
 use App\Utils\Constants;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\FromQuery;
+use Maatwebsite\Excel\Concerns\WithChunkReading;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class DiamondExport implements FromCollection, WithHeadings
+class DiamondExport implements FromCollection, WithHeadings, WithChunkReading
 {
     use Exportable;
     /**
      * @return \Illuminate\Support\Collection
      */
+
+
+    public function chunkSize(): int
+    {
+        return 500;
+    }
+
     public function collection() // Overrides collection() method from FromCollection
     {
-        // get all Diamond table data
+        // Get all Diamond table data
         // map function iterates the database fields and returns selected fields data only
         return Diamond::all()->map(function ($diamond) {
             return [

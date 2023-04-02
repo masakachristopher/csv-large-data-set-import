@@ -5,7 +5,7 @@ To run the cloned codebase directly, you need to have composer installed.
 1. Run `composer install` to install dependencies.
 2. Make sure your web server and database server are running.
 3. Make your own `.env` file in the project root, following the key name but not value used in [`.env.example`]
-4. Don't forget to add database configuration values according to your server preferences   `.env` file. See sample below.
+4. Don't forget to add database configuration values according to your server preferences `.env` file. See sample below.
    ````
     DB_CONNECTION=mysql
     DB_HOST=127.0.0.1
@@ -31,4 +31,19 @@ To run the cloned codebase directly, you need to have composer installed.
   - `php artisan test` to run test
 
 
+8. For background processes which are added to the queue, eg Exporting Excel file. Use
 
+    ````
+    php artisan queue:work
+    ````
+    or
+
+    ````
+    php artisan queue:listen
+    ````
+
+
+## OVERVIEW POINTS
+Due to little user experience on the web interface, here are some highlights
+- CSV importing process takes about 10 to 15 seconds.
+- Excel exporting process takes about 8 minutes

@@ -23,6 +23,6 @@ Route::get('/diamonds', [FileImportAndExportController::class, 'visualizeImporte
 // handles file import
 Route::post('import', [FileImportAndExportController::class, 'importFile']);
 // handles file export
-Route::get('export/{slug}', [FileImportAndExportController::class, 'exportFile']);
+Route::get('export', [FileImportAndExportController::class, 'exportFile']);
 // End of import and Export handler routes
 
