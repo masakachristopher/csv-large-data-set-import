@@ -18,6 +18,7 @@
                             <th class="sort" wire:click="sortOrder('cut')">Cut {!! $sortLink !!}</th>
                             <th class="sort" wire:click="sortOrder('color')">Color {!! $sortLink !!}</th>
                             <th class="sort" wire:click="sortOrder('clarity')">Clarity {!! $sortLink !!}</th>
+                            <th class="sort" wire:click="sortOrder('carat_weight')">Carat Weight {!! $sortLink !!}</th>
                             <th class="sort" wire:click="sortOrder('cut_quality')">Cut Quality {!! $sortLink !!}</th>
                             <th class="sort" wire:click="sortOrder('lab')">Lab {!! $sortLink !!}</th>
                             <th class="sort" wire:click="sortOrder('symmetry')">Symmetry {!! $sortLink !!}</th>
@@ -33,7 +34,7 @@
                             <th class="sort" wire:click="sortOrder('girdle_min')">Girdle Min {!! $sortLink !!}</th>
                             <th class="sort" wire:click="sortOrder('girdle_max')">Girdle Max {!! $sortLink !!}</th>
                             <th class="sort" wire:click="sortOrder('flour_color')">Flour Color {!! $sortLink !!}</th>
-                            <th class="sort" wire:click="sortOrder('florr_intensity')">Flour Intensity {!! $sortLink !!}</th>
+                            <th class="sort" wire:click="sortOrder('flour_intensity')">Flour Intensity {!! $sortLink !!}</th>
                             <th class="sort" wire:click="sortOrder('fancy_color_dominant_color')">Fancy Color Dominant Color {!! $sortLink !!}</th>
                             <th class="sort" wire:click="sortOrder('fancy_color_secondary_color')">Fancy Color Secondary Color{!! $sortLink !!}</th>
                             <th class="sort" wire:click="sortOrder('fancy_color_overtone')">Fancy Color Overtone {!! $sortLink !!}</th>
@@ -64,6 +65,8 @@
                                     <td>{{ $diamond->meas_depth }}</td>
                                     <td>{{ $diamond->girdle_min }}</td>
                                     <td>{{ $diamond->girdle_max }}</td>
+                                    <td>{{ $diamond->flour_colour }}</td>
+                                    <td>{{ $diamond->flour_intensity }}</td>
                                     <td>{{ $diamond->fancy_color_dominant_color }}</td>
                                     <td>{{ $diamond->fancy_color_secondary_color }}</td>
                                     <td>{{ $diamond->fancy_color_overtone }}</td>

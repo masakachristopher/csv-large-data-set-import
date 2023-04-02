@@ -4,17 +4,23 @@ namespace App\Imports;
 
 use App\Models\Diamond;
 use App\Utils\Constants;
+use Carbon\Traits\Serialization;
+use Illuminate\Bus\Batchable;
+use Illuminate\Bus\Queueable;
+use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Queue\InteractsWithQueue;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithStartRow;
 
 class DiamondImport implements ToModel, WithStartRow
 {
+    use Batchable,Dispatchable, InteractsWithQueue,Queueable,Serialization;
     /**
      * @param array $row
      *
      * @return \Illuminate\Database\Eloquent\Model|null
      */
-    public function model(array $row)
+     public function model(array $row)
     {
         return new Diamond([
             // Csv file fields list

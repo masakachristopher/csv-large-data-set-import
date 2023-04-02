@@ -13,7 +13,7 @@ class DiamondsTable extends Component
 
     protected $paginationTheme = 'bootstrap';
 
-    public $orderColumn = "cut";
+    public $orderColumn = "id";
     public $sortOrder = "asc";
     public $sortLink = '<i class="sorticon fa-solid fa-caret-up"></i>';
 
@@ -77,7 +77,7 @@ class DiamondsTable extends Component
 
         }
 
-        $diamonds = $diamonds->paginate(10);
+        $diamonds = $diamonds->paginate(20);
 
         return view('livewire.diamonds-table', [
             'diamonds' => $diamonds,
