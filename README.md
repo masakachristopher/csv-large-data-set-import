@@ -31,7 +31,7 @@ To run the cloned codebase directly, you need to have composer installed.
   - `php artisan test` to run test
 
 
-8. For background processes which are added to the queue, eg Exporting Excel file. Use
+8. For background processes which are added to the queue, eg Exporting Excel file. Open new terminal and run
 
     ````
     php artisan queue:work
