@@ -42,7 +42,7 @@ class ProcessExcelExport implements ShouldQueue
             Excel::store(new DiamondExport(), $this->exportedFileName, 'local', \Maatwebsite\Excel\Excel::XLSX, ['chunk' => 500]);
 
         } catch (\Throwable $th) {
-            //throw $th;
+            throw $th;
         }
 
 

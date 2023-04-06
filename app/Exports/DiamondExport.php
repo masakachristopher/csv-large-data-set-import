@@ -29,7 +29,7 @@ class DiamondExport implements FromCollection, WithHeadings, WithChunkReading
         // map function iterates the database fields and returns selected fields data only
         return Diamond::all()->map(function ($diamond) {
             return [
-                Constants::IDENTIFIER => $diamond->identifier,
+                Constants::IDENTIFIER => (string) $diamond->identifier,
                 Constants::CUT => $diamond->cut,
                 Constants::COLOR => $diamond->color,
                 Constants::CLARITY => $diamond->clarity,
@@ -41,11 +41,11 @@ class DiamondExport implements FromCollection, WithHeadings, WithChunkReading
                 Constants::EYE_CLEAN => $diamond->eye_clean,
                 Constants::CULET_SIZE => $diamond->culet_size,
                 Constants::CULET_CONDITION => $diamond->culet_condition,
-                Constants::DEPTH_PERCENT => $diamond->depth_percent,
-                Constants::TABLE_PERCENT => $diamond->table_percent,
-                Constants::MEAS_LENGTH => $diamond->meas_length,
-                Constants::MEAS_WIDTH => $diamond->meas_width,
-                Constants::MEAS_DEPTH => $diamond->meas_depth,
+                Constants::DEPTH_PERCENT => (string) $diamond->depth_percent,
+                Constants::TABLE_PERCENT => (string) $diamond->table_percent,
+                Constants::MEAS_LENGTH => (string) $diamond->meas_length,
+                Constants::MEAS_WIDTH => (string) $diamond->meas_width,
+                Constants::MEAS_DEPTH => (string) $diamond->meas_depth,
                 Constants::GIRDLE_MIN => $diamond->girdle_min,
                 Constants::GIRDLE_MAX => $diamond->girdle_max,
                 Constants::FLOUR_COLOR => $diamond->flour_colour,
@@ -55,7 +55,7 @@ class DiamondExport implements FromCollection, WithHeadings, WithChunkReading
                 Constants::FANCY_COLOR_OVERTONE => $diamond->fancy_color_overtone,
                 Constants::FANCY_COLOR_INTENSITY => $diamond->fancy_color_intensity,
                 Constants::TOTAL_SALES => $diamond->total_sales,
-                Constants::_PRICE => "",
+                Constants::_PRICE => null,
 
             ];
         });
@@ -66,7 +66,7 @@ class DiamondExport implements FromCollection, WithHeadings, WithChunkReading
     public function headings(): array // overrides  headings() method from WithHeadings
     {
         return [
-            ".",
+            " ",
             Constants::CUT,
             Constants::COLOR,
             Constants::CLARITY,
